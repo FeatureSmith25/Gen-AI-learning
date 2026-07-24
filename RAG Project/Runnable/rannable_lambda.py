@@ -20,8 +20,8 @@ def word_counter(text):
     return len(text.split())
 parallel_chain=RunnableParallel({
     'joke':RunnablePassthrough(),
-    # 'word_count':RunnableLambda(word_counter)
-    'word_count':RunnableLambda(lambda x: len(x.split()))
+    'word_count':RunnableLambda(word_counter)
+    # word_count=RunnableLambda(lambda x: len(x.split()))
 })
 
 final_chain=RunnableSequence(joke_generator,parallel_chain)
